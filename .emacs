@@ -1,6 +1,6 @@
 ;;; .emacs --- Initialization file for Emacs  -*- lexical-binding: t; -*-
 ;;; Commentary:
-;;; vertico, which-key, lsp features (eglot, flymake, sideline, company, yasnippet), nerd-icons, themes (zenburn, spacemacs, monokai)
+;;; vertico, which-key, doom-modeline, lsp features (lsp-mode, flycheck, sideline, company, yasnippet), nerd-icons, themes (zenburn, spacemacs, monokai, catppuccin)
 ;;; Code:
 
 (custom-set-variables
@@ -32,7 +32,7 @@
 (setq use-package-always-ensure t)
 
 
-(add-to-list 'default-frame-alist '(fullscreen . maximized)) 
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq-default frame-title-format '("deezmacs - [" mode-name "]"))
 (setq confirm-kill-emacs #'yes-or-no-p)
 (setq inhibit-startup-message t)
@@ -40,6 +40,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (column-number-mode)
+(global-hl-line-mode 1)
 (global-display-line-numbers-mode t)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (electric-pair-mode t)
@@ -53,6 +54,12 @@
 (use-package which-key
   :config
   (which-key-mode))
+
+(use-package doom-modeline
+  :init (doom-modeline-mode 1))
+
+(use-package spacious-padding
+  :init (spacious-padding-mode))
 
 (use-package zenburn-theme
   :config
@@ -130,9 +137,9 @@
 
 ;; Configure automatic backups
 (setq
- backup-by-copying t ; don't clobber symlinks
+ backup-by-copying t
  backup-directory-alist
- '(("." . "~/.emacsbackups/")) ; don't litter my fs tree
+ '(("." . "~/.emacsbackups/"))
  delete-old-versions t
  kept-new-versions 6
  kept-old-versions 2
