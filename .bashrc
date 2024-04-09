@@ -25,6 +25,7 @@ fi
 unset rc
 
 export QT_QPA_PLATFORM=wayland
+export ELECTRON_OZONE_PLATFORM_HINT=auto
 
 # base64 decode function
 b64d() { echo -n $1 | base64 -d && echo; }
@@ -46,17 +47,21 @@ alias codium="codium --unity-launch --enable-features=UseOzonePlatform,WaylandWi
 # flatpak aliases
 # alias vlc="flatpak run org.videolan.VLC"
 alias lofi="mpv --no-video https://www.youtube.com/watch?v=4xDzrJKXOOY"
-alias ghostwriter="flatpak run io.github.wereturtle.ghostwriter"
 
 # firefox profiles
 alias whatsapp="firefox -p whatsapp &"
 alias snuff="firefox -p git &"
-alias cprog="firefox -p cprog &"
+alias dsa="firefox -p dsa &"
 
+# rustup
 . "$HOME/.cargo/env"
 
 # leetcode-cli (cargo) completions
 eval "$(leetcode completions)"
 
-alias commit_libssh="git commit --trailer=\"Signed-off-by: Debanga Sarma <deb737@proton.me>\""
+# libssh
+CMAKE_DEFAULT_OPTIONS="-DCMAKE_BUILD_TYPE=RelWithDebInfo -DPICKY_DEVELOPER=ON"
+CMAKE_BUILD_OPTIONS="-DWITH_BLOWFISH_CIPHER=ON -DWITH_SFTP=ON -DWITH_SERVER=ON -DWITH_ZLIB=ON -DWITH_PCAP=ON -DWITH_DEBUG_CRYPTO=ON -DWITH_DEBUG_PACKET=ON -DWITH_DEBUG_CALLTRACE=ON"
+CMAKE_TEST_OPTIONS="-DUNIT_TESTING=ON -DCLIENT_TESTING=ON -DSERVER_TESTING=ON -DWITH_BENCHMARKS=ON -DFUZZ_TESTING=ON"
+CMAKE_OPTIONS="$CMAKE_DEFAULT_OPTIONS $CMAKE_BUILD_OPTIONS $CMAKE_TEST_OPTIONS"
 
