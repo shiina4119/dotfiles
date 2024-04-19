@@ -1,6 +1,6 @@
 ;;; .emacs --- Initialization file for Emacs  -*- lexical-binding: t; -*-
 ;;; Commentary:
-;;; vertico, which-key, doom-modeline, lsp features (lsp-mode, flycheck, sideline, company, yasnippet), nerd-icons, themes (zenburn, spacemacs, monokai, catppuccin)
+;;; vertico, which-key, doom-modeline, spacious-padding, lsp features (lsp-mode, flycheck, sideline, company, yasnippet), nerd-icons, themes (zenburn, spacemacs, monokai, catppuccin)
 ;;; Code:
 
 (custom-set-variables
@@ -8,13 +8,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
+ )
 
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -34,7 +34,10 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq-default frame-title-format '("deezmacs - [" mode-name "]"))
-(setq confirm-kill-emacs #'yes-or-no-p)
+(set-face-attribute 'default nil
+                    :font
+                    "JetBrains Mono-12")
+(set-frame-font "JetBrains Mono-12" nil t)
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -56,10 +59,13 @@
   (which-key-mode))
 
 (use-package doom-modeline
-  :init (doom-modeline-mode 1))
+  :init
+  (doom-modeline-mode 1))
 
 (use-package spacious-padding
-  :init (spacious-padding-mode))
+  :init
+  (spacious-padding-mode 1))
+
 
 (use-package zenburn-theme
   :config
