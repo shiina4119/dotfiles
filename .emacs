@@ -1,6 +1,8 @@
 ;;; .emacs --- Initialization file for Emacs  -*- lexical-binding: t; -*-
 ;;; Commentary:
-;;; vertico, which-key, doom-modeline, spacious-padding, lsp features (lsp-mode, flycheck, sideline, company, yasnippet), nerd-icons, themes (zenburn, spacemacs, monokai, catppuccin)
+;;; vertico, which-key, doom-modeline, spacious-padding,
+;;; lsp features (lsp-mode, flycheck, sideline, company, yasnippet),
+;;; nerd-icons, themes (zenburn, spacemacs, monokai, catppuccin)
 ;;; Code:
 
 (custom-set-variables
@@ -70,10 +72,13 @@
 
 
 (use-package zenburn-theme
-  :config
-  (load-theme 'zenburn))
+  ;; :config
+  ;; (load-theme 'zenburn)
+  )
 
-(use-package spacemacs-theme)
+(use-package spacemacs-theme
+  :config
+  (load-theme 'spacemacs-dark t))
 
 (use-package monokai-theme)
 
