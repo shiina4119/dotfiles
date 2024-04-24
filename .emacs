@@ -48,6 +48,8 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (electric-pair-mode t)
 (pixel-scroll-precision-mode)
+(setq-default display-fill-column-indicator-column 79)
+(global-display-fill-column-indicator-mode t)
 
 
 (use-package vertico
@@ -92,6 +94,8 @@
 (use-package rust-mode)
 
 (use-package js2-mode)
+
+(use-package org)
 
 
 ;; nerd-icons
@@ -152,6 +156,7 @@
  version-control t)
 
 
+;; libssh style
 (setq c-default-style "linux"
       c-basic-offset 4)
 (setq-default indent-tabs-mode nil)
