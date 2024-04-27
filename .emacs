@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; vertico, which-key, doom-modeline, spacious-padding,
 ;;; lsp features (lsp-mode, flycheck, sideline, company, yasnippet),
-;;; nerd-icons, themes (zenburn, spacemacs, monokai, catppuccin)
+;;; nerd-icons, themes (zenburn, spacemacs, monokai, subatomic,catppuccin)
 ;;; Code:
 
 (custom-set-variables
@@ -51,7 +51,7 @@
 (electric-pair-mode t)
 (pixel-scroll-precision-mode)
 (setq-default display-fill-column-indicator-column 79)
-(global-display-fill-column-indicator-mode t)
+(global-set-key (kbd "C-c h") 'org-html-export-to-html)
 
 
 (use-package vertico
@@ -78,17 +78,24 @@
 
 (use-package spacemacs-theme
   :config
-  (load-theme 'spacemacs-dark t))
+  (load-theme 'spacemacs-dark))
 
-(use-package monokai-theme)
+(use-package monokai-theme
+  ;; :config
+  ;; (load-theme 'monokai)
+  )
 
-(use-package subatomic-theme)
+(use-package subatomic-theme
+  ;; :config
+  ;; (load-theme 'subatomic)
+  )
 
-(use-package catppuccin-theme)
+(use-package catppuccin-theme
   ;; :init
   ;; (setq catppuccin-flavor 'macchiato)
   ;; :config
-  ;; (load-theme 'catppuccin t))
+  ;; (load-theme 'catppuccin t)
+  )
 
 
 ;; major modes
@@ -122,6 +129,7 @@
   :hook
   (rust-mode . lsp)
   (c-mode . lsp)
+  (python-mode . lsp)
   (lsp-mode . lsp-enable-which-key-integration)
   :config
   (lsp-treemacs-sync-mode 1)
