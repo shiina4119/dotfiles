@@ -73,21 +73,21 @@
 
 (use-package zenburn-theme
   ;; :config
-  ;; (load-theme 'zenburn)
+  ;; (load-theme 'zenburn t)
   )
 
 (use-package spacemacs-theme
   :config
-  (load-theme 'spacemacs-dark))
+  (load-theme 'spacemacs-dark t))
 
 (use-package monokai-theme
   ;; :config
-  ;; (load-theme 'monokai)
+  ;; (load-theme 'monokai t)
   )
 
 (use-package subatomic-theme
   ;; :config
-  ;; (load-theme 'subatomic)
+  ;; (load-theme 'subatomic t)
   )
 
 (use-package catppuccin-theme
