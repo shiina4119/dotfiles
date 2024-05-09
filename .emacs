@@ -36,10 +36,6 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq-default frame-title-format '("deezmacs - [" mode-name "]"))
-(set-face-attribute 'default nil
-                    :font
-                    "JetBrains Mono-12")
-(set-frame-font "JetBrains Mono-12" nil t)
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -167,12 +163,6 @@
  kept-new-versions 6
  kept-old-versions 2
  version-control t)
-
-
-;; libssh style
-(setq c-default-style "linux"
-      c-basic-offset 4)
-(setq-default indent-tabs-mode nil)
 
 
 (provide '.emacs)
