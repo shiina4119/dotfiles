@@ -36,62 +36,59 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq-default frame-title-format '("deezmacs - [" mode-name "]"))
+;; (add-to-list 'default-frame-alist '(font . "JetBrains Mono-12"))
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
-(column-number-mode)
-(global-hl-line-mode 1)
+(column-number-mode t)
+(global-hl-line-mode t)
 (global-display-line-numbers-mode t)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (electric-pair-mode t)
-(pixel-scroll-precision-mode)
+(pixel-scroll-precision-mode t)
 (setq-default display-fill-column-indicator-column 79)
 (global-set-key (kbd "C-c h") 'org-html-export-to-html)
 
 
 (use-package vertico
   :init
-  (vertico-mode))
+  (vertico-mode t))
 
 (use-package which-key
   :config
-  (which-key-mode))
+  (which-key-mode t))
 
 (use-package doom-modeline
   :init
-  (doom-modeline-mode 1))
+  (doom-modeline-mode t))
 
 (use-package spacious-padding
   :init
-  (spacious-padding-mode 1))
+  (spacious-padding-mode t))
 
 
 (use-package zenburn-theme
-  ;; :config
-  ;; (load-theme 'zenburn t)
-  )
-
-(use-package spacemacs-theme
   :config
-  (load-theme 'spacemacs-dark t))
+  (load-theme 'zenburn t))
 
-(use-package monokai-theme
-  ;; :config
-  ;; (load-theme 'monokai t)
-  )
+;; (use-package spacemacs-theme
+;;   :config
+;;   (load-theme 'spacemacs-dark t))
 
-(use-package subatomic-theme
-  ;; :config
-  ;; (load-theme 'subatomic t)
-  )
+;; (use-package monokai-theme
+;;   :config
+;;   (load-theme 'monokai t))
 
-(use-package catppuccin-theme
-  ;; :init
-  ;; (setq catppuccin-flavor 'macchiato)
-  ;; :config
-  ;; (load-theme 'catppuccin t)
-  )
+;; (use-package subatomic-theme
+;;   :config
+;;   (load-theme 'subatomic t))
+
+;; (use-package catppuccin-theme
+;;   :init
+;;   (setq catppuccin-flavor 'macchiato)
+;;   :config
+;;   (load-theme 'catppuccin t))
 
 
 ;; major modes
@@ -99,11 +96,9 @@
   :mode
   ("README\\.md\\'" . gfm-mode))
 
-(use-package rust-mode)
-
-(use-package js2-mode)
-
-(use-package org)
+(use-package org
+  :mode
+  ("\\.org$" . org-mode))
 
 
 ;; nerd-icons
@@ -123,23 +118,23 @@
   ("C-c f" . lsp-format-buffer)
   ("C-c r" . lsp-format-region)
   :hook
-  (rust-mode . lsp)
   (c-mode . lsp)
   (python-mode . lsp)
   (lsp-mode . lsp-enable-which-key-integration)
   :config
-  (lsp-treemacs-sync-mode 1)
-  :commands lsp)
+  (lsp-treemacs-sync-mode t)
+  :commands
+  lsp)
 
 (use-package lsp-ui
-  :commands lsp-ui-mode
+  :commands
+  lsp-ui-mode
   :hook
   (lsp-mode . lsp-ui-mode))
 
 (use-package lsp-treemacs
   :bind
-  ([f8] . treemacs)
-  :commands lsp-treemacs-errors-list)
+  ([f8] . treemacs))
 
 (use-package flycheck
   :hook
