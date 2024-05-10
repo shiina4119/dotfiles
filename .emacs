@@ -24,10 +24,6 @@
 			 ("melpa" . "https://melpa.org/packages/")
 			 ("org" . "https://orgmode.org/elpa/")))
 
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-
 
 (require 'use-package)
 (require 'use-package-ensure)
@@ -121,8 +117,6 @@
   (c-mode . lsp)
   (python-mode . lsp)
   (lsp-mode . lsp-enable-which-key-integration)
-  :config
-  (lsp-treemacs-sync-mode t)
   :commands
   lsp)
 
