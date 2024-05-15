@@ -26,18 +26,15 @@ unset rc
 
 . "$HOME/.cargo/env"
 
-export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
-export QT_QPA_PLATFORM=wayland
+# export GOPATH="$HOME/go"
+# export PATH="$PATH:$GOPATH/bin"
+# export QT_QPA_PLATFORM=wayland
 export ELECTRON_OZONE_PLATFORM_HINT=auto
+export PATH="$HOME/software:$PATH"
 
-if [ "$(which leetcode)" != "" ]; then
-    eval "$(leetcode completions)"
-fi
-
-if [ "$(which starship)" != "" ]; then
-    eval "$(starship init bash)"
-fi
+# eval "$(leetcode completions)"
+# eval "$(starship init bash)"
+# eval "$(wgcf completion bash)"
 
 # base64 decode function
 b64d() { echo -n $1 | base64 -d && echo; }
@@ -45,11 +42,11 @@ b64d() { echo -n $1 | base64 -d && echo; }
 # warp
 alias warpon="wg-quick up warp"
 alias warpoff="wg-quick down warp"
-alias warpstatus="~/Software/wgcf trace | grep warp"
+alias warpstatus="wgcf trace | grep warp"
 
 alias spiceup="spicetify update && spicetify restore backup apply"
 
-alias pass="~/Software/bitwarden"
+alias pass="bitwarden"
 
 alias codium="codium --unity-launch --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland"
 
