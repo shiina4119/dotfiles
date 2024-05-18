@@ -105,15 +105,13 @@
 
 ;; LSP
 (use-package lsp-mode
-  :init
-  (setq lsp-pylsp-plugins-black-enabled 't)
   :bind
   ("C-c l" . lsp)
   ("C-c f" . lsp-format-buffer)
   ("C-c r" . lsp-format-region)
   :hook
-  (c-mode . lsp)
-  (python-mode . lsp)
+  ;; (c-mode . lsp)
+  ;; (python-mode . lsp)
   (lsp-mode . lsp-enable-which-key-integration)
   :commands
   lsp)
