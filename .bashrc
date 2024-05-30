@@ -24,7 +24,7 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # export GOPATH="$HOME/go"
 # export PATH="$PATH:$GOPATH/bin"
@@ -45,12 +45,6 @@ alias warpoff="wg-quick down warp"
 alias warpstatus="wgcf trace | grep warp"
 
 alias spiceup="spicetify update && spicetify restore backup apply"
-
-alias pass="bitwarden"
-
-alias codium="codium --unity-launch --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland"
-
-alias lofi="mpv --no-video https://www.youtube.com/watch?v=4xDzrJKXOOY"
 
 # firefox profiles
 alias whatsapp="firefox -p whatsapp &"
