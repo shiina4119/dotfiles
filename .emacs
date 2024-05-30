@@ -20,33 +20,9 @@
  )
 
 
-(defun set-exec-path-from-shell-PATH ()
-  (interactive)
-  (let ((path-from-shell (replace-regexp-in-string
-			  "[ \t\n]*$" "" (shell-command-to-string
-					  "$SHELL --login -c 'echo $PATH'"))))
-    
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
-
-(set-exec-path-from-shell-PATH)
-
-
-(require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-			 ("melpa" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")))
-
-
-(require 'use-package)
-(require 'use-package-ensure)
-(setq use-package-always-ensure t)
-
-
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq-default frame-title-format '("deezmacs - [" mode-name "]"))
-;; (add-to-list 'default-frame-alist '(font . "JetBrains Mono-12"))
+(add-to-list 'default-frame-alist '(font . "JetBrainsMono Nerd Font-12"))
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -59,6 +35,50 @@
 (pixel-scroll-precision-mode t)
 (setq-default display-fill-column-indicator-column 79)
 (global-set-key (kbd "C-c h") 'org-html-export-to-html)
+(setq-default indent-tabs-mode nil)
+; JS/TS indent
+(setq js-indent-level 2)
+(setq typescript-indent-level 2)
+; lsp-mode performance tuning
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024))
+(setenv "LSP_USE_PLISTS" "true")
+
+
+;; sync emacs PATH with shell PATH
+(defun set-exec-path-from-shell-PATH ()
+  (interactive)
+  (let ((path-from-shell (replace-regexp-in-string
+			  "[ \t\n]*$" "" (shell-command-to-string
+					  "$SHELL --login -c 'echo $PATH'"))))
+    
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+(set-exec-path-from-shell-PATH)
+
+
+;; Configure automatic backups
+(setq
+ backup-by-copying t
+ backup-directory-alist
+ '(("." . "~/.emacsbackups/"))
+ delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t)
+
+
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+			 ("melpa" . "https://melpa.org/packages/")
+			 ("org" . "https://orgmode.org/elpa/")))
+
+
+(require 'use-package)
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
 
 
 (use-package vertico
@@ -80,7 +100,11 @@
 
 (use-package doom-themes
   :config
-  (load-theme 'doom-tokyo-night t))
+  (load-theme 'doom-zenburn t))
+
+;; (use-package ef-themes
+;;   :config
+;;   (load-theme 'ef-bio t))
 
 
 ;; major modes
@@ -114,7 +138,13 @@
   ;; (python-mode . lsp)
   (lsp-mode . lsp-enable-which-key-integration)
   :commands
-  lsp)
+  (lsp))
+
+;; (use-package lsp-pyright
+;;   :hook
+;;   (python-mode . (lambda ()
+;;                    (require 'lsp-pyright)
+;;                    (lsp))))
 
 (use-package lsp-ui
   :commands
@@ -137,17 +167,6 @@
 (use-package yasnippet
   :hook
   (prog-mode . yas-minor-mode))
-
-
-;; Configure automatic backups
-(setq
- backup-by-copying t
- backup-directory-alist
- '(("." . "~/.emacsbackups/"))
- delete-old-versions t
- kept-new-versions 6
- kept-old-versions 2
- version-control t)
 
 
 (provide '.emacs)
